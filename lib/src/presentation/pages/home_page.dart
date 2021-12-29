@@ -7,9 +7,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _langCode = Localizations.localeOf(context).languageCode;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).hello),
+        actions: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(_langCode.toUpperCase()),
+            ),
+          )
+        ],
       ),
     );
   }

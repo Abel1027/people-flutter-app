@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/generated/l10n.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -7,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hola'),
+        title: Text(S.of(context).hello),
       ),
     );
   }

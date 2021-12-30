@@ -26,13 +26,13 @@ class LoginRepositoryImpl extends LoginRepository {
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'email-already-in-use':
-          return ResultOr.failure(LoginFailure.unknownError());
+          return ResultOr.failure(LoginFailure.emailAlreadyInUse());
         case 'invalid-email':
-          return ResultOr.failure(LoginFailure.unknownError());
+          return ResultOr.failure(LoginFailure.invalidEmail());
         case 'operation-not-allowed':
-          return ResultOr.failure(LoginFailure.unknownError());
+          return ResultOr.failure(LoginFailure.operationNotAllowed());
         case 'weak-password':
-          return ResultOr.failure(LoginFailure.unknownError());
+          return ResultOr.failure(LoginFailure.weakPassword());
         default:
           return ResultOr.failure(LoginFailure.unknownError());
       }

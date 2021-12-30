@@ -21,6 +21,7 @@ dev_dependencies:
   intl: ^0.17.0
   firebase_auth: ^3.3.4
   cloud_firestore: ^3.1.5
+  flutter_bloc: ^8.0.1
 
 flutter:
   uses-material-design: true

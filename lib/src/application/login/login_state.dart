@@ -15,6 +15,8 @@ class LoginState {
         showError: false,
       );
 
+  bool get isValid => email.isValid() && password.isValid();
+
   final Email email;
   final Password password;
   final ResultOr<LoginFailure> loginOrFailure;

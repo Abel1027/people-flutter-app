@@ -3,5 +3,14 @@
     "login": "Inicio de sesión",
     "email": "Correo",
     "password": "Contraseña",
-    "loginRegister": "INICIA SESIÓN O REGÍSTRATE"
+    "loginRegister": "INICIA SESIÓN O REGÍSTRATE",
+    "unknownError": "Error desconocido",
+    "emailAlreadyInUse": "El correo ya está en uso",
+    "invalidEmail": "Correo inválido",
+    "operationNotAllowed": "Operación no permitida",
+    "weakPassword": "Contraseña débil",
+    "passwordTooShort": "La contraseña debe contener al menos {length} caracteres",
+    "passwordTooLong": "La contraseña debe contener máximo {length} caracteres",
+    "invalidPassword": "Contraseña no permitida",
+    "userLoginSuccess": "El usuario ha iniciado sesión con éxito"
 }

@@ -34,6 +34,16 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
 
+    if (!state.isValid) {
+      final errorState = state.copyWith(
+        showError: true,
+      );
+
+      emit(errorState);
+
+      return;
+    }
+
     final loadingState = state.copyWith(
       loginOrFailure: ResultOr.loading(),
     );

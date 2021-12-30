@@ -99,6 +99,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Error desconocido`
+  String get unknownError {
+    return Intl.message(
+      'Error desconocido',
+      name: 'unknownError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El correo ya está en uso`
+  String get emailAlreadyInUse {
+    return Intl.message(
+      'El correo ya está en uso',
+      name: 'emailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo inválido`
+  String get invalidEmail {
+    return Intl.message(
+      'Correo inválido',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operación no permitida`
+  String get operationNotAllowed {
+    return Intl.message(
+      'Operación no permitida',
+      name: 'operationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña débil`
+  String get weakPassword {
+    return Intl.message(
+      'Contraseña débil',
+      name: 'weakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña debe contener al menos {length} caracteres`
+  String passwordTooShort(Object length) {
+    return Intl.message(
+      'La contraseña debe contener al menos $length caracteres',
+      name: 'passwordTooShort',
+      desc: '',
+      args: [length],
+    );
+  }
+
+  /// `La contraseña debe contener máximo {length} caracteres`
+  String passwordTooLong(Object length) {
+    return Intl.message(
+      'La contraseña debe contener máximo $length caracteres',
+      name: 'passwordTooLong',
+      desc: '',
+      args: [length],
+    );
+  }
+
+  /// `Contraseña no permitida`
+  String get invalidPassword {
+    return Intl.message(
+      'Contraseña no permitida',
+      name: 'invalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El usuario ha iniciado sesión con éxito`
+  String get userLoginSuccess {
+    return Intl.message(
+      'El usuario ha iniciado sesión con éxito',
+      name: 'userLoginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

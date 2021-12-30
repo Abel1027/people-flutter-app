@@ -3,5 +3,14 @@
     "login": "Login",
     "email": "Email",
     "password": "Password",
-    "loginRegister": "SIGN-IN OR SIGN-UP"
+    "loginRegister": "SIGN-IN OR SIGN-UP",
+    "unknownError": "Unknown error",
+    "emailAlreadyInUse": "Email already in use",
+    "invalidEmail": "Invalid email",
+    "operationNotAllowed": "Operation not allowed",
+    "weakPassword": "Weak password",
+    "passwordTooShort": "The password must contain at least {length} characters",
+    "passwordTooLong": "The password must contain a maximum of {length} characters",
+    "invalidPassword": "Invalid password",
+    "userLoginSuccess": "User has been signed in successfully"
 }

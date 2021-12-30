@@ -20,13 +20,32 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(length) =>
+      "The password must contain a maximum of ${length} characters";
+
+  static String m1(length) =>
+      "The password must contain at least ${length} characters";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailAlreadyInUse":
+            MessageLookupByLibrary.simpleMessage("Email already in use"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Invalid password"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginRegister":
             MessageLookupByLibrary.simpleMessage("SIGN-IN OR SIGN-UP"),
-        "password": MessageLookupByLibrary.simpleMessage("Password")
+        "operationNotAllowed":
+            MessageLookupByLibrary.simpleMessage("Operation not allowed"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordTooLong": m0,
+        "passwordTooShort": m1,
+        "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
+        "userLoginSuccess": MessageLookupByLibrary.simpleMessage(
+            "User has been signed in successfully"),
+        "weakPassword": MessageLookupByLibrary.simpleMessage("Weak password")
       };
 }

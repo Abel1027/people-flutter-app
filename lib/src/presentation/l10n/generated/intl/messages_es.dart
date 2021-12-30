@@ -20,13 +20,33 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
+  static String m0(length) =>
+      "La contraseña debe contener máximo ${length} caracteres";
+
+  static String m1(length) =>
+      "La contraseña debe contener al menos ${length} caracteres";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "email": MessageLookupByLibrary.simpleMessage("Correo"),
+        "emailAlreadyInUse":
+            MessageLookupByLibrary.simpleMessage("El correo ya está en uso"),
         "hello": MessageLookupByLibrary.simpleMessage("Hola"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Correo inválido"),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Contraseña no permitida"),
         "login": MessageLookupByLibrary.simpleMessage("Inicio de sesión"),
         "loginRegister":
             MessageLookupByLibrary.simpleMessage("INICIA SESIÓN O REGÍSTRATE"),
-        "password": MessageLookupByLibrary.simpleMessage("Contraseña")
+        "operationNotAllowed":
+            MessageLookupByLibrary.simpleMessage("Operación no permitida"),
+        "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
+        "passwordTooLong": m0,
+        "passwordTooShort": m1,
+        "unknownError":
+            MessageLookupByLibrary.simpleMessage("Error desconocido"),
+        "userLoginSuccess": MessageLookupByLibrary.simpleMessage(
+            "El usuario ha iniciado sesión con éxito"),
+        "weakPassword": MessageLookupByLibrary.simpleMessage("Contraseña débil")
       };
 }

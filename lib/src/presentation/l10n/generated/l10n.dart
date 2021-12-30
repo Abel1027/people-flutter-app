@@ -59,6 +59,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Inicio de sesión`
+  String get login {
+    return Intl.message(
+      'Inicio de sesión',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo`
+  String get email {
+    return Intl.message(
+      'Correo',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña`
+  String get password {
+    return Intl.message(
+      'Contraseña',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `INICIA SESIÓN O REGÍSTRATE`
+  String get loginRegister {
+    return Intl.message(
+      'INICIA SESIÓN O REGÍSTRATE',
+      name: 'loginRegister',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

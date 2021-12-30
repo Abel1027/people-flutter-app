@@ -1,3 +1,7 @@
 {
-    "hello": "Hello"
+    "hello": "Hello",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginRegister": "SIGN-IN OR SIGN-UP"
 }

@@ -1,3 +1,7 @@
 {
-    "hello": "Hola"
+    "hello": "Hola",
+    "login": "Inicio de sesión",
+    "email": "Correo",
+    "password": "Contraseña",
+    "loginRegister": "INICIA SESIÓN O REGÍSTRATE"
 }

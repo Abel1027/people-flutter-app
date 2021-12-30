@@ -3,9 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:people_app/src/presentation/pages/login_page.dart';
 
 import 'src/presentation/l10n/generated/l10n.dart';
+import 'src/infrastructure/di/providers.dart';
 import 'src/presentation/pages/home_page.dart';
 
 void main() {
+  getItSetup();
   runApp(const MyApp());
 }
 

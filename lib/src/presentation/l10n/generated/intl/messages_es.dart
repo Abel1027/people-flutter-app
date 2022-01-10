@@ -43,10 +43,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordTooLong": m0,
         "passwordTooShort": m1,
+        "signin": MessageLookupByLibrary.simpleMessage("INICIA SESIÓN"),
+        "signup": MessageLookupByLibrary.simpleMessage("REGÍSTRATE"),
         "unknownError":
             MessageLookupByLibrary.simpleMessage("Error desconocido"),
-        "userLoginSuccess": MessageLookupByLibrary.simpleMessage(
+        "userDisabled":
+            MessageLookupByLibrary.simpleMessage("El usuario está desactivado"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage(
+            "El usuario no se encuentra registrado"),
+        "userSigninSuccess": MessageLookupByLibrary.simpleMessage(
             "El usuario ha iniciado sesión con éxito"),
-        "weakPassword": MessageLookupByLibrary.simpleMessage("Contraseña débil")
+        "userSignupSuccess": MessageLookupByLibrary.simpleMessage(
+            "El usuario se ha registrado con éxito"),
+        "weakPassword":
+            MessageLookupByLibrary.simpleMessage("Contraseña débil"),
+        "wrongPassword":
+            MessageLookupByLibrary.simpleMessage("La contraseña es incorrecta")
       };
 }

@@ -180,11 +180,71 @@ class S {
     );
   }
 
+  /// `El usuario se ha registrado con éxito`
+  String get userSignupSuccess {
+    return Intl.message(
+      'El usuario se ha registrado con éxito',
+      name: 'userSignupSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `El usuario ha iniciado sesión con éxito`
-  String get userLoginSuccess {
+  String get userSigninSuccess {
     return Intl.message(
       'El usuario ha iniciado sesión con éxito',
-      name: 'userLoginSuccess',
+      name: 'userSigninSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGÍSTRATE`
+  String get signup {
+    return Intl.message(
+      'REGÍSTRATE',
+      name: 'signup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `INICIA SESIÓN`
+  String get signin {
+    return Intl.message(
+      'INICIA SESIÓN',
+      name: 'signin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El usuario está desactivado`
+  String get userDisabled {
+    return Intl.message(
+      'El usuario está desactivado',
+      name: 'userDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El usuario no se encuentra registrado`
+  String get userNotFound {
+    return Intl.message(
+      'El usuario no se encuentra registrado',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña es incorrecta`
+  String get wrongPassword {
+    return Intl.message(
+      'La contraseña es incorrecta',
+      name: 'wrongPassword',
       desc: '',
       args: [],
     );

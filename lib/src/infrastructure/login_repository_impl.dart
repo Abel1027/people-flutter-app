@@ -18,7 +18,7 @@ class LoginRepositoryImpl extends LoginRepository {
     required Password password,
   }) async {
     try {
-      _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: email.getOrCrash(),
         password: password.getOrCrash(),
       );
@@ -48,7 +48,7 @@ class LoginRepositoryImpl extends LoginRepository {
     required Password password,
   }) async {
     try {
-      _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email.getOrCrash(),
         password: password.getOrCrash(),
       );

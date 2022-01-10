@@ -43,9 +43,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordTooLong": m0,
         "passwordTooShort": m1,
+        "signin": MessageLookupByLibrary.simpleMessage("SIGN IN"),
+        "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
         "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
-        "userLoginSuccess": MessageLookupByLibrary.simpleMessage(
+        "userDisabled": MessageLookupByLibrary.simpleMessage("User disabled"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
+        "userSigninSuccess": MessageLookupByLibrary.simpleMessage(
             "User has been signed in successfully"),
-        "weakPassword": MessageLookupByLibrary.simpleMessage("Weak password")
+        "userSignupSuccess": MessageLookupByLibrary.simpleMessage(
+            "User has been signed up successfully"),
+        "weakPassword": MessageLookupByLibrary.simpleMessage("Weak password"),
+        "wrongPassword": MessageLookupByLibrary.simpleMessage("Wrong password")
       };
 }

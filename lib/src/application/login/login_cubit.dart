@@ -30,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(newState);
   }
 
-  Future<void> login() async {
+  Future<void> register() async {
     if (!state.registerOrFailure.isNone) {
       return;
     }

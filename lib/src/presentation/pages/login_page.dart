@@ -20,23 +20,44 @@ class LoginPage extends StatelessWidget {
       body: BlocProvider(
           create: (context) => _loginCubit,
           child: BlocConsumer<LoginCubit, LoginState>(
-            listener: (context, state) => state.registerOrFailure.maybeMap(
-              isFailure: (f) => showError(
-                context,
-                message: f.map(
-                  unknownError: (_) => S.of(context).unknownError,
-                  emailAlreadyInUse: (_) => S.of(context).emailAlreadyInUse,
-                  invalidEmail: (_) => S.of(context).invalidEmail,
-                  operationNotAllowed: (_) => S.of(context).operationNotAllowed,
-                  weakPassword: (_) => S.of(context).weakPassword,
+            listener: (context, state) {
+              state.registerOrFailure.maybeMap(
+                isFailure: (f) => showError(
+                  context,
+                  message: f.map(
+                    unknownError: (_) => S.of(context).unknownError,
+                    emailAlreadyInUse: (_) => S.of(context).emailAlreadyInUse,
+                    invalidEmail: (_) => S.of(context).invalidEmail,
+                    operationNotAllowed: (_) =>
+                        S.of(context).operationNotAllowed,
+                    weakPassword: (_) => S.of(context).weakPassword,
+                  ),
                 ),
-              ),
-              isSuccess: () => showSuccess(
-                context,
-                message: S.of(context).userLoginSuccess,
-              ),
-              orElse: () {},
-            ),
+                isSuccess: () => showSuccess(
+                  context,
+                  message: S.of(context).userSignupSuccess,
+                ),
+                orElse: () {},
+              );
+
+              state.signinOrFailure.maybeMap(
+                isFailure: (f) => showError(
+                  context,
+                  message: f.map(
+                    unknownError: (_) => S.of(context).unknownError,
+                    invalidEmail: (_) => S.of(context).invalidEmail,
+                    userDisabled: (_) => S.of(context).userDisabled,
+                    userNotFound: (_) => S.of(context).userNotFound,
+                    wrongPassword: (_) => S.of(context).wrongPassword,
+                  ),
+                ),
+                isSuccess: () => showSuccess(
+                  context,
+                  message: S.of(context).userSigninSuccess,
+                ),
+                orElse: () {},
+              );
+            },
             builder: (context, state) {
               return ListView(
                 padding: const EdgeInsets.all(16),
@@ -79,8 +100,20 @@ class LoginPage extends StatelessWidget {
                           ),
                         )
                       : ElevatedButton(
-                          onPressed: () => _loginCubit.login(),
-                          child: Text(S.of(context).loginRegister),
+                          onPressed: () => _loginCubit.register(),
+                          child: Text(S.of(context).signup),
+                        ),
+                  const SizedBox(height: 16),
+                  state.signinOrFailure.isLoading
+                      ? const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(7),
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
+                      : ElevatedButton(
+                          onPressed: () => _loginCubit.signin(),
+                          child: Text(S.of(context).signin),
                         ),
                 ],
               );

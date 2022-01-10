@@ -68,4 +68,43 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(cleanState);
   }
+
+  Future<void> signin() async {
+    if (!state.signinOrFailure.isNone) {
+      return;
+    }
+
+    if (!state.isValid) {
+      final errorState = state.copyWith(
+        showError: true,
+      );
+
+      emit(errorState);
+
+      return;
+    }
+
+    final loadingState = state.copyWith(
+      signinOrFailure: ResultOr.loading(),
+    );
+
+    emit(loadingState);
+
+    final signinOrFailureResponse = await _loginRepository.signin(
+      email: state.email,
+      password: state.password,
+    );
+
+    final newState = state.copyWith(
+      signinOrFailure: signinOrFailureResponse,
+    );
+
+    emit(newState);
+
+    final cleanState = state.copyWith(
+      signinOrFailure: ResultOr.none(),
+    );
+
+    emit(cleanState);
+  }
 }

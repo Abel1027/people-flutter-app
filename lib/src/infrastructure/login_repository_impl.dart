@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../domain/login_repository.dart';
 import '../domain/result_or.dart';
 import '../domain/register_failure.dart';
-import '../domain/login_failure.dart';
+import '../domain/signin_failure.dart';
 import '../domain/email/email.dart';
 import '../domain/password/password.dart';
 
@@ -13,7 +13,7 @@ class LoginRepositoryImpl extends LoginRepository {
   final FirebaseAuth _firebaseAuth;
 
   @override
-  Future<ResultOr<RegisterFailure>> login({
+  Future<ResultOr<RegisterFailure>> register({
     required Email email,
     required Password password,
   }) async {
@@ -39,6 +39,36 @@ class LoginRepositoryImpl extends LoginRepository {
       }
     } catch (_, __) {
       return ResultOr.failure(RegisterFailure.unknownError());
+    }
+  }
+
+  @override
+  Future<ResultOr<SigninFailure>> signin({
+    required Email email,
+    required Password password,
+  }) async {
+    try {
+      _firebaseAuth.signInWithEmailAndPassword(
+        email: email.getOrCrash(),
+        password: password.getOrCrash(),
+      );
+
+      return ResultOr.success();
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          return ResultOr.failure(SigninFailure.invalidEmail());
+        case 'user-disabled':
+          return ResultOr.failure(SigninFailure.userDisabled());
+        case 'user-not-found':
+          return ResultOr.failure(SigninFailure.userNotFound());
+        case 'wrong-password':
+          return ResultOr.failure(SigninFailure.wrongPassword());
+        default:
+          return ResultOr.failure(SigninFailure.unknownError());
+      }
+    } catch (_, __) {
+      return ResultOr.failure(SigninFailure.unknownError());
     }
   }
 }

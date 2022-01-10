@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/login_repository.dart';
 import '../../domain/email/email.dart';
 import '../../domain/register_failure.dart';
-import '../../domain/login_failure.dart';
+import '../../domain/signin_failure.dart';
 import '../../domain/password/password.dart';
 import '../../domain/result_or.dart';
 
@@ -51,7 +51,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(loadingState);
 
-    final registerOrFailureResponse = await _loginRepository.login(
+    final registerOrFailureResponse = await _loginRepository.register(
       email: state.email,
       password: state.password,
     );

@@ -4,14 +4,14 @@ class LoginState {
   LoginState({
     required this.email,
     required this.password,
-    required this.loginOrFailure,
+    required this.registerOrFailure,
     required this.showError,
   });
 
   factory LoginState.initial() => LoginState(
         email: Email(''),
         password: Password(''),
-        loginOrFailure: ResultOr.none(),
+        registerOrFailure: ResultOr.none(),
         showError: false,
       );
 
@@ -19,26 +19,26 @@ class LoginState {
 
   final Email email;
   final Password password;
-  final ResultOr<LoginFailure> loginOrFailure;
+  final ResultOr<RegisterFailure> registerOrFailure;
   final bool showError;
 
   LoginState copyWith({
     Email? email,
     Password? password,
-    ResultOr<LoginFailure>? loginOrFailure,
+    ResultOr<RegisterFailure>? registerOrFailure,
     bool? showError,
   }) {
     return LoginState(
       email: email ?? this.email,
       password: password ?? this.password,
-      loginOrFailure: loginOrFailure ?? this.loginOrFailure,
+      registerOrFailure: registerOrFailure ?? this.registerOrFailure,
       showError: showError ?? this.showError,
     );
   }
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, loginOrFailure: $loginOrFailure, showError: $showError)';
+    return 'LoginState(email: $email, password: $password, registerOrFailure: $registerOrFailure, showError: $showError)';
   }
 
   @override
@@ -48,7 +48,7 @@ class LoginState {
     return other is LoginState &&
         other.email == email &&
         other.password == password &&
-        other.loginOrFailure == loginOrFailure &&
+        other.registerOrFailure == registerOrFailure &&
         other.showError == showError;
   }
 
@@ -56,7 +56,7 @@ class LoginState {
   int get hashCode {
     return email.hashCode ^
         password.hashCode ^
-        loginOrFailure.hashCode ^
+        registerOrFailure.hashCode ^
         showError.hashCode;
   }
 }

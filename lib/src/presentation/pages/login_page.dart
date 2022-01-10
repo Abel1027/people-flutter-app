@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
       body: BlocProvider(
           create: (context) => _loginCubit,
           child: BlocConsumer<LoginCubit, LoginState>(
-            listener: (context, state) => state.loginOrFailure.maybeMap(
+            listener: (context, state) => state.registerOrFailure.maybeMap(
               isFailure: (f) => showError(
                 context,
                 message: f.map(
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  state.loginOrFailure.isLoading
+                  state.registerOrFailure.isLoading
                       ? const Center(
                           child: Padding(
                             padding: EdgeInsets.all(7),

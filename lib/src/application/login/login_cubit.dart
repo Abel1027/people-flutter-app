@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/login_repository.dart';
 import '../../domain/email/email.dart';
+import '../../domain/register_failure.dart';
 import '../../domain/login_failure.dart';
 import '../../domain/password/password.dart';
 import '../../domain/result_or.dart';
@@ -30,7 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> login() async {
-    if (!state.loginOrFailure.isNone) {
+    if (!state.registerOrFailure.isNone) {
       return;
     }
 
@@ -45,24 +46,24 @@ class LoginCubit extends Cubit<LoginState> {
     }
 
     final loadingState = state.copyWith(
-      loginOrFailure: ResultOr.loading(),
+      registerOrFailure: ResultOr.loading(),
     );
 
     emit(loadingState);
 
-    final loginOrFailureResponse = await _loginRepository.login(
+    final registerOrFailureResponse = await _loginRepository.login(
       email: state.email,
       password: state.password,
     );
 
     final newState = state.copyWith(
-      loginOrFailure: loginOrFailureResponse,
+      registerOrFailure: registerOrFailureResponse,
     );
 
     emit(newState);
 
     final cleanState = state.copyWith(
-      loginOrFailure: ResultOr.none(),
+      registerOrFailure: ResultOr.none(),
     );
 
     emit(cleanState);

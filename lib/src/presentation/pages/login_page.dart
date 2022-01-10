@@ -6,6 +6,8 @@ import '../../infrastructure/di/providers.dart';
 import '../../application/login/login_cubit.dart';
 import '../widgets/toasts.dart';
 import '../l10n/generated/l10n.dart';
+import '../custom_router.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -51,10 +53,13 @@ class LoginPage extends StatelessWidget {
                     wrongPassword: (_) => S.of(context).wrongPassword,
                   ),
                 ),
-                isSuccess: () => showSuccess(
-                  context,
-                  message: S.of(context).userSigninSuccess,
-                ),
+                isSuccess: () {
+                  CustomRouter.of(context).replace(const HomePage());
+                  showSuccess(
+                    context,
+                    message: S.of(context).userSigninSuccess,
+                  );
+                },
                 orElse: () {},
               );
             },

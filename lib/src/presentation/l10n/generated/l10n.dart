@@ -249,6 +249,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Subir datos`
+  String get uploadData {
+    return Intl.message(
+      'Subir datos',
+      name: 'uploadData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personas populares`
+  String get popularPeople {
+    return Intl.message(
+      'Personas populares',
+      name: 'popularPeople',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

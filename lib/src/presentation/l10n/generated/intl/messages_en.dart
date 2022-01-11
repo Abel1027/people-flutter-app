@@ -43,9 +43,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordTooLong": m0,
         "passwordTooShort": m1,
+        "popularPeople": MessageLookupByLibrary.simpleMessage("Popular people"),
         "signin": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
         "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
+        "uploadData": MessageLookupByLibrary.simpleMessage("Upload data"),
         "userDisabled": MessageLookupByLibrary.simpleMessage("User disabled"),
         "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "userSigninSuccess": MessageLookupByLibrary.simpleMessage(

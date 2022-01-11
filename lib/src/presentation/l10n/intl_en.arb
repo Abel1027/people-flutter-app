@@ -18,5 +18,7 @@
     "signin": "SIGN IN",
     "userDisabled": "User disabled",
     "userNotFound": "User not found",
-    "wrongPassword": "Wrong password"
+    "wrongPassword": "Wrong password",
+    "uploadData": "Upload data",
+    "popularPeople": "Popular people"
 }

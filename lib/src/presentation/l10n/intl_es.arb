@@ -18,5 +18,7 @@
     "signin": "INICIA SESIÓN",
     "userDisabled": "El usuario está desactivado",
     "userNotFound": "El usuario no se encuentra registrado",
-    "wrongPassword": "La contraseña es incorrecta"
+    "wrongPassword": "La contraseña es incorrecta",
+    "uploadData": "Subir datos",
+    "popularPeople": "Personas populares"
 }

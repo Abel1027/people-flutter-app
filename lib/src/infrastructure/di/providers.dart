@@ -1,20 +1,25 @@
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../domain/login_repository.dart';
 import '../../domain/auth_repository.dart';
 import '../../application/login/login_cubit.dart';
 import '../../application/auth/auth_cubit.dart';
 import '../../domain/logout_repository.dart';
+import '../../application/firestore/firestore_cubit.dart';
+import '../../domain/firestore_repository.dart';
 import '../login_repository_impl.dart';
 import '../auth_repository_impl.dart';
 import '../logout_repository_impl.dart';
+import '../firestore_repository_impl.dart';
 
 final getIt = GetIt.instance;
 
 void getItSetup() {
   // 3RD PARTY LIBRARIES
   getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
+  getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 
   // REPOSITORIES
   getIt.registerSingleton<LoginRepository>(
@@ -26,6 +31,9 @@ void getItSetup() {
   getIt.registerSingleton<LogoutRepository>(
     LogoutRepositoryImpl(getIt<FirebaseAuth>()),
   );
+  getIt.registerSingleton<FirestoreRepository>(
+    FirestoreRepositoryImpl(getIt<FirebaseFirestore>()),
+  );
 
   // CUBITS
   getIt.registerFactory<LoginCubit>(() => LoginCubit(
@@ -34,4 +42,7 @@ void getItSetup() {
   getIt.registerSingleton<AuthCubit>(AuthCubit(
     getIt<AuthRepository>(),
   ));
+  getIt.registerFactory<FirestoreCubit>(() => FirestoreCubit(
+        getIt<FirestoreRepository>(),
+      ));
 }

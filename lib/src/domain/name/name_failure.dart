@@ -114,6 +114,26 @@ abstract class NameFailure {
 
     return 'empty';
   }
+
+  @override
+  // ignore: hash_and_equals
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    if (this is NameFailureEmpty && other is NameFailureEmpty) {
+      return true;
+    }
+
+    if (this is NameFailureInvalid && other is NameFailureInvalid) {
+      return true;
+    }
+
+    if (this is NameFailureTooLong && other is NameFailureTooLong) {
+      return true;
+    }
+
+    return false;
+  }
 }
 
 class NameFailureEmpty extends NameFailure {}

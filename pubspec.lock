@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   another_flushbar:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: another_flushbar
       url: "https://pub.dartlang.org"
@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.1.0"
   cloud_firestore:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
@@ -86,7 +86,7 @@ packages:
     source: hosted
     version: "1.2.0"
   firebase_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
@@ -107,7 +107,7 @@ packages:
     source: hosted
     version: "3.3.5"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -133,7 +133,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
@@ -162,7 +162,7 @@ packages:
     source: sdk
     version: "0.0.0"
   get_it:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: get_it
       url: "https://pub.dartlang.org"
@@ -176,7 +176,7 @@ packages:
     source: hosted
     version: "4.0.0"
   intl:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"

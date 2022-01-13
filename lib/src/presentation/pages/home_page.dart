@@ -9,6 +9,7 @@ import '../../infrastructure/di/providers.dart';
 import '../l10n/generated/l10n.dart';
 import '../custom_router.dart';
 import '../widgets/person_card_widget.dart';
+import '../config/const.dart';
 import 'login_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,6 +41,7 @@ class HomePage extends StatelessWidget {
             ),
             Center(
               child: IconButton(
+                key: const Key(PresConstants.signoutButtonKey),
                 onPressed: () async => getIt<LogoutRepository>().signout(),
                 icon: const Icon(
                   Icons.logout,

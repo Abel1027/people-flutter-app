@@ -7,6 +7,7 @@ import '../../application/login/login_cubit.dart';
 import '../widgets/toasts.dart';
 import '../l10n/generated/l10n.dart';
 import '../custom_router.dart';
+import '../config/const.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -69,6 +70,7 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Text(S.of(context).email),
                   TextFormField(
+                    key: const Key(PresConstants.emailInputKey),
                     onChanged: (value) => _loginCubit.onEmailChanged(value),
                     autovalidateMode: state.showError
                         ? AutovalidateMode.always
@@ -83,6 +85,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 32),
                   Text(S.of(context).password),
                   TextFormField(
+                    key: const Key(PresConstants.passwordInputKey),
                     onChanged: (value) => _loginCubit.onPasswordChanged(value),
                     autovalidateMode: state.showError
                         ? AutovalidateMode.always
@@ -105,6 +108,7 @@ class LoginPage extends StatelessWidget {
                           ),
                         )
                       : ElevatedButton(
+                          key: const Key(PresConstants.signupButtonKey),
                           onPressed: () => _loginCubit.register(),
                           child: Text(S.of(context).signup),
                         ),
@@ -117,6 +121,7 @@ class LoginPage extends StatelessWidget {
                           ),
                         )
                       : ElevatedButton(
+                          key: const Key(PresConstants.signinButtonKey),
                           onPressed: () => _loginCubit.signin(),
                           child: Text(S.of(context).signin),
                         ),

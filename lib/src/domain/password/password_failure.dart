@@ -1,7 +1,9 @@
-abstract class PasswordFailure {
+import 'package:equatable/equatable.dart';
+
+abstract class PasswordFailure extends Equatable {
   const PasswordFailure();
-  factory PasswordFailure.tooShort(int min) = PasswordFailureTooShort;
-  factory PasswordFailure.tooLong(int max) = PasswordFailureTooLong;
+  const factory PasswordFailure.tooShort(int min) = PasswordFailureTooShort;
+  const factory PasswordFailure.tooLong(int max) = PasswordFailureTooLong;
   factory PasswordFailure.invalid() = PasswordFailureInvalid;
 
   void when({
@@ -105,15 +107,24 @@ abstract class PasswordFailure {
 }
 
 class PasswordFailureTooShort extends PasswordFailure {
+  const PasswordFailureTooShort(this.min);
+
   final int min;
 
-  PasswordFailureTooShort(this.min);
+  @override
+  List<Object> get props => [];
 }
 
 class PasswordFailureTooLong extends PasswordFailure {
+  const PasswordFailureTooLong(this.max);
+
   final int max;
 
-  PasswordFailureTooLong(this.max);
+  @override
+  List<Object> get props => [];
 }
 
-class PasswordFailureInvalid extends PasswordFailure {}
+class PasswordFailureInvalid extends PasswordFailure {
+  @override
+  List<Object> get props => [];
+}

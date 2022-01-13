@@ -1,9 +1,11 @@
-abstract class Resource<F, T> {
+import 'package:equatable/equatable.dart';
+
+abstract class Resource<F, T> extends Equatable {
   const Resource();
   factory Resource.none() = _ResourceNone;
   factory Resource.loading() = _ResourceLoading;
-  factory Resource.success(T resource) = _ResourceSuccess;
-  factory Resource.failure(F failure) = _ResourceFailure;
+  const factory Resource.success(T resource) = _ResourceSuccess;
+  const factory Resource.failure(F failure) = _ResourceFailure;
 
   bool get isNone => this is _ResourceNone;
   bool get isLoading => this is _ResourceLoading;
@@ -123,18 +125,30 @@ abstract class Resource<F, T> {
   }
 }
 
-class _ResourceNone<F, T> extends Resource<F, T> {}
+class _ResourceNone<F, T> extends Resource<F, T> {
+  @override
+  List<Object> get props => [];
+}
 
-class _ResourceLoading<F, T> extends Resource<F, T> {}
+class _ResourceLoading<F, T> extends Resource<F, T> {
+  @override
+  List<Object> get props => [];
+}
 
 class _ResourceSuccess<F, T> extends Resource<F, T> {
+  const _ResourceSuccess(this.value);
+
   final T value;
 
-  _ResourceSuccess(this.value);
+  @override
+  List<Object> get props => [];
 }
 
 class _ResourceFailure<F, T> extends Resource<F, T> {
+  const _ResourceFailure(this.failure);
+
   final F failure;
 
-  _ResourceFailure(this.failure);
+  @override
+  List<Object> get props => [];
 }

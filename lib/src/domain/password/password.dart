@@ -20,11 +20,11 @@ class Password extends ValueObject<PasswordFailure, String> {
         r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,8}$';
 
     if (input.length < minLength) {
-      return left(PasswordFailure.tooShort(minLength));
+      return left(const PasswordFailure.tooShort(minLength));
     }
 
     if (input.length > maxLength) {
-      return left(PasswordFailure.tooLong(maxLength));
+      return left(const PasswordFailure.tooLong(maxLength));
     }
 
     if (!RegExp(regex).hasMatch(input.toString())) {

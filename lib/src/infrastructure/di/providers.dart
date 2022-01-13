@@ -1,18 +1,18 @@
-import 'package:get_it/get_it.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../domain/login_repository.dart';
-import '../../domain/auth_repository.dart';
-import '../../application/login/login_cubit.dart';
 import '../../application/auth/auth_cubit.dart';
-import '../../domain/logout_repository.dart';
 import '../../application/firestore/firestore_cubit.dart';
+import '../../application/login/login_cubit.dart';
+import '../../domain/auth_repository.dart';
 import '../../domain/firestore_repository.dart';
-import '../login_repository_impl.dart';
+import '../../domain/login_repository.dart';
+import '../../domain/logout_repository.dart';
 import '../auth_repository_impl.dart';
-import '../logout_repository_impl.dart';
 import '../firestore_repository_impl.dart';
+import '../login_repository_impl.dart';
+import '../logout_repository_impl.dart';
 
 final getIt = GetIt.instance;
 

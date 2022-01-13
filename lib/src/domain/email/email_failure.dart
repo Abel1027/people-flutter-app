@@ -1,4 +1,6 @@
-abstract class EmailFailure {
+import 'package:equatable/equatable.dart';
+
+abstract class EmailFailure extends Equatable {
   const EmailFailure();
   factory EmailFailure.invalid() = EmailFailureInvalid;
 
@@ -62,4 +64,7 @@ abstract class EmailFailure {
   }
 }
 
-class EmailFailureInvalid extends EmailFailure {}
+class EmailFailureInvalid extends EmailFailure {
+  @override
+  List<Object> get props => [];
+}

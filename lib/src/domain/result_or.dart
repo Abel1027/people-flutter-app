@@ -1,9 +1,11 @@
-abstract class ResultOr<F> {
+import 'package:equatable/equatable.dart';
+
+abstract class ResultOr<F> extends Equatable {
   const ResultOr();
   factory ResultOr.none() = _ResultOrNone;
   factory ResultOr.loading() = _ResultOrLoading;
   factory ResultOr.success() = _ResultOrSuccess;
-  factory ResultOr.failure(F failure) = _ResultOrFailure;
+  const factory ResultOr.failure(F failure) = _ResultOrFailure;
 
   bool get isNone => this is _ResultOrNone;
   bool get isLoading => this is _ResultOrLoading;
@@ -125,14 +127,26 @@ abstract class ResultOr<F> {
   }
 }
 
-class _ResultOrNone<F> extends ResultOr<F> {}
-
-class _ResultOrFailure<F> extends ResultOr<F> {
-  final F failure;
-
-  _ResultOrFailure(this.failure);
+class _ResultOrNone<F> extends ResultOr<F> {
+  @override
+  List<Object> get props => [];
 }
 
-class _ResultOrSuccess<F> extends ResultOr<F> {}
+class _ResultOrFailure<F> extends ResultOr<F> {
+  const _ResultOrFailure(this.failure);
 
-class _ResultOrLoading<F> extends ResultOr<F> {}
+  final F failure;
+
+  @override
+  List<Object> get props => [];
+}
+
+class _ResultOrSuccess<F> extends ResultOr<F> {
+  @override
+  List<Object> get props => [];
+}
+
+class _ResultOrLoading<F> extends ResultOr<F> {
+  @override
+  List<Object> get props => [];
+}

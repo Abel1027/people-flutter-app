@@ -10,6 +10,7 @@ import 'package:people_app/src/domain/register_failure.dart';
 import 'package:people_app/src/domain/result_or.dart';
 
 void main() {
+  // Instantiate repositories and cubits later
   late final MockLoginRepository loginRepository;
   late final LoginCubit loginCubit;
 

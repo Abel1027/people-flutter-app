@@ -16,6 +16,7 @@ void main() {
   group(
     'Test LoginCubit bloc ->',
     () {
+      // Setup repositories and cubits
       setUp(() {
         EquatableConfig.stringify = true;
         loginRepository = MockLoginRepository();

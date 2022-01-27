@@ -7,26 +7,32 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: pip install lcov_cobertura
-  displayName: 'Run a one-line script'
+# steps:
+# - script: pip install lcov_cobertura
+#   displayName: 'Run a one-line script'
 
 # - script: |
 #     echo Add other tasks to build, test, and deploy your project.
 #     echo See https://aka.ms/yaml
 #   displayName: 'Run a multi-line script'
 
-# - task: FlutterInstall@0
-#   inputs:
-#     channel: 'stable'
-#     version: 'latest'
-#   displayName: 'Install latest Flutter SDK stable version'
+- task: FlutterInstall@0
+  inputs:
+    channel: 'stable'
+    version: 'latest'
+  displayName: 'Install latest Flutter SDK stable version'
     
-# - task: FlutterTest@0
-#   inputs:
-#    generateCodeCoverageReport: true
-#    projectDirectory: '$(projectDirectory)'
-#   displayName: 'Run Flutter tests'
+- task: FlutterTest@0
+  inputs:
+   generateCodeCoverageReport: true
+   projectDirectory: '$(projectDirectory)'
+  displayName: 'Run Flutter tests'
+
+steps:
+- script: |
+    pip install lcov_cobertura
+    python **/lcov_cobertura.py **/lcov.info
+  displayName: 'Run a one-line script'
 
 # - task: PublishCodeCoverageResults@1
 #   inputs:

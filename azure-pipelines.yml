@@ -31,7 +31,7 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
    codeCoverageTool: JaCoCo
-   summaryFileLocation: '$(projectDirectory)/**/lcov.info'
+   summaryFileLocation: '**/lcov.info'
   displayName: 'Publish code coverage results'
 
 # - task: FlutterBuild@0

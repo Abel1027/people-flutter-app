@@ -36,3 +36,7 @@ steps:
   inputs:
    contents: '**/*.apk'
    targetFolder: '$(build.artifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+   artifactName: 'drop'

@@ -36,8 +36,8 @@ steps:
       import argparse
       from lcov_cobertura import LcovCobertura
       parser = argparse.ArgumentParser()
-      parser.add_argument('--cov_file_path', '-f', help='Code coverage file path', type= str)
-      parser.add_argument('--output_dir', '-f', help='Cobertura XML file directory', type= str)
+      parser.add_argument('--cov_file_path', '-c', help='Code coverage file path', type= str)
+      parser.add_argument('--output_dir', '-o', help='Cobertura XML file directory', type= str)
       args = parser.parse_args()
       print(args.cov_file_path)
       print(args.output_dir)

@@ -28,10 +28,16 @@ steps:
    projectDirectory: $(projectDirectory)
   displayName: 'Run Flutter tests'
 
+- task: CopyFiles@2
+  inputs:
+   contents: '**/lcov.info'
+   targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: 'Copy app to artifacts directory'
+
 - task: PublishCodeCoverageResults@1
   inputs:
    codeCoverageTool: JaCoCo
-   summaryFileLocation: '**/lcov.info'
+   summaryFileLocation: '$(build.artifactStagingDirectory)/lcov.info'
   displayName: 'Publish code coverage results'
 
 # - task: FlutterBuild@0

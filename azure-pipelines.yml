@@ -28,9 +28,19 @@ steps:
 #    projectDirectory: '$(projectDirectory)'
 #   displayName: 'Run Flutter tests'
 
+# - script: |
+#     pip install lcov_cobertura
+#     python **/lcov-cobertura.py **/lcov.info
+#   displayName: 'Run a one-line script'
+
 - script: |
     pip install lcov_cobertura
-    python **/lcov-cobertura.py **/lcov.info
+    python
+    from lcov_cobertura import LcovCobertura
+    LCOV_INPUT = 'your lcov input'
+    converter = LcovCobertura(LCOV_INPUT)
+    cobertura_xml = converter.convert()
+    print(cobertura_xml)
   displayName: 'Run a one-line script'
 
 # - task: PublishCodeCoverageResults@1

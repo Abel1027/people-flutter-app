@@ -31,7 +31,7 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
    codeCoverageTool: JaCoCo
-   summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*.xml'
+   summaryFileLocation: '$(build.artifactStagingDirectory)/**/*.xml'
   displayName: 'Publish code coverage results'
 
 # - task: FlutterBuild@0
@@ -46,7 +46,7 @@ steps:
 #    targetFolder: '$(build.artifactStagingDirectory)'
 #   displayName: 'Copy app to artifacts directory'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-   artifactName: 'drop'
-  displayName: 'Publish artifacts'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#    artifactName: 'drop'
+#   displayName: 'Publish artifacts'

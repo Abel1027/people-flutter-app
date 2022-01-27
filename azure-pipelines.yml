@@ -22,7 +22,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-   contents: '**/lcov.info'
+   contents: '*/lcov.info'
    targetFolder: '$(build.artifactStagingDirectory)'
   displayName: 'Copy code coverage file to artifacts directory'
 
@@ -49,7 +49,7 @@ steps:
       cobertura_xml_file = open(f'{args.output_dir}/cobertura.xml', 'w')
       cobertura_xml_file.write(cobertura_xml_content)
       cobertura_xml_file.close()
-    arguments: --cov_file_path '$(build.artifactStagingDirectory)/**/lcov.info' --output_dir '$(build.artifactStagingDirectory)'
+    arguments: --cov_file_path '$(build.artifactStagingDirectory)/lcov.info' --output_dir '$(build.artifactStagingDirectory)'
 
 # - task: PublishCodeCoverageResults@1
 #   inputs:

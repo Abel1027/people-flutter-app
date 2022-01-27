@@ -20,7 +20,7 @@ steps:
   inputs:
     channel: 'stable'
     version: 'custom'
-    customVersion: 2.8.0
+    customVersion: 2.5.3
   displayName: 'Install latest Flutter SDK stable version'
     
 - task: FlutterTest@0

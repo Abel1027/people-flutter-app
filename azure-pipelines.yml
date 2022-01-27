@@ -16,21 +16,21 @@ steps:
 #     echo See https://aka.ms/yaml
 #   displayName: 'Run a multi-line script'
 
-- task: FlutterInstall@0
-  inputs:
-    channel: 'stable'
-    version: 'latest'
-  displayName: 'Install latest Flutter SDK stable version'
+# - task: FlutterInstall@0
+#   inputs:
+#     channel: 'stable'
+#     version: 'latest'
+#   displayName: 'Install latest Flutter SDK stable version'
     
-- task: FlutterTest@0
-  inputs:
-   generateCodeCoverageReport: true
-   projectDirectory: '$(projectDirectory)'
-  displayName: 'Run Flutter tests'
+# - task: FlutterTest@0
+#   inputs:
+#    generateCodeCoverageReport: true
+#    projectDirectory: '$(projectDirectory)'
+#   displayName: 'Run Flutter tests'
 
 - script: |
     pip install lcov_cobertura
-    python **/lcov_cobertura.py **/lcov.info
+    python **/lcov-cobertura.py **/lcov.info
   displayName: 'Run a one-line script'
 
 # - task: PublishCodeCoverageResults@1

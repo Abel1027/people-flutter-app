@@ -7,7 +7,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-# steps:
+steps:
 # - script: pip install lcov_cobertura
 #   displayName: 'Run a one-line script'
 
@@ -28,7 +28,6 @@ pool:
    projectDirectory: '$(projectDirectory)'
   displayName: 'Run Flutter tests'
 
-steps:
 - script: |
     pip install lcov_cobertura
     python **/lcov_cobertura.py **/lcov.info

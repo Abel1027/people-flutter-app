@@ -8,40 +8,43 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# - script: pip install lcov_cobertura
-#   displayName: 'Run a one-line script'
-
-# - script: |
-#     echo Add other tasks to build, test, and deploy your project.
-#     echo See https://aka.ms/yaml
-#   displayName: 'Run a multi-line script'
-
-# - task: FlutterInstall@0
-#   inputs:
-#     channel: 'stable'
-#     version: 'latest'
-#   displayName: 'Install latest Flutter SDK stable version'
+- task: FlutterInstall@0
+  inputs:
+    channel: 'stable'
+    version: 'latest'
+  displayName: 'Install latest Flutter SDK stable version'
     
-# - task: FlutterTest@0
-#   inputs:
-#    generateCodeCoverageReport: true
-#    projectDirectory: '$(projectDirectory)'
-#   displayName: 'Run Flutter tests'
+- task: FlutterTest@0
+  inputs:
+   generateCodeCoverageReport: true
+   projectDirectory: '$(projectDirectory)'
+  displayName: 'Run Flutter tests'
 
-# - script: |
-#     pip install lcov_cobertura
-#     python **/lcov-cobertura.py **/lcov.info
-#   displayName: 'Run a one-line script'
+- task: CopyFiles@2
+  inputs:
+   contents: '**/lcov.info'
+   targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: 'Copy code coverage file to artifacts directory'
 
-- script: |
-    pip install lcov_cobertura
-    python
-    from lcov_cobertura import LcovCobertura
-    LCOV_INPUT = 'your lcov input'
-    converter = LcovCobertura(LCOV_INPUT)
-    cobertura_xml = converter.convert()
-    print(cobertura_xml)
-  displayName: 'Run a one-line script'
+- script: pip install lcov_cobertura
+  displayName: 'Install lcov_cobertura python package'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: inline
+    script: |
+      import sys
+      from lcov_cobertura import LcovCobertura
+      coverage_file_path = str(sys.argv[0])
+      coverage_file = open(coverage_file_path, 'r')
+      coverage_file_content = coverage_file.read()
+      converter = LcovCobertura(coverage_file_content)
+      cobertura_xml_content = converter.convert()
+      print(cobertura_xml_content)
+      cobertura_xml_file = open(f'{str(sys.argv[1])}/cobertura.xml', 'w')
+      cobertura_xml_file.write(cobertura_xml_content)
+      cobertura_xml_file.close()
+    arguments: --cov_file_path '$(build.artifactStagingDirectory)/**/lcov.info' --output_dst '$(build.artifactStagingDirectory)'
 
 # - task: PublishCodeCoverageResults@1
 #   inputs:

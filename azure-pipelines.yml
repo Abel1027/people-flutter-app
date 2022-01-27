@@ -33,18 +33,23 @@ steps:
   inputs:
     scriptSource: inline
     script: |
-      import sys
+      import argparse
       from lcov_cobertura import LcovCobertura
-      coverage_file_path = str(sys.argv[0])
-      coverage_file = open(coverage_file_path, 'r')
+      parser = argparse.ArgumentParser()
+      parser.add_argument('--cov_file_path', '-f', help='Code coverage file path', type= str)
+      parser.add_argument('--output_dir', '-f', help='Cobertura XML file directory', type= str)
+      args = parser.parse_args()
+      print(args.cov_file_path)
+      print(args.output_dir)
+      coverage_file = open(args.cov_file_path, 'r')
       coverage_file_content = coverage_file.read()
       converter = LcovCobertura(coverage_file_content)
       cobertura_xml_content = converter.convert()
       print(cobertura_xml_content)
-      cobertura_xml_file = open(f'{str(sys.argv[1])}/cobertura.xml', 'w')
+      cobertura_xml_file = open(f'{args.output_dir}/cobertura.xml', 'w')
       cobertura_xml_file.write(cobertura_xml_content)
       cobertura_xml_file.close()
-    arguments: --cov_file_path '$(build.artifactStagingDirectory)/**/lcov.info' --output_dst '$(build.artifactStagingDirectory)'
+    arguments: --cov_file_path '$(build.artifactStagingDirectory)/**/lcov.info' --output_dir '$(build.artifactStagingDirectory)'
 
 # - task: PublishCodeCoverageResults@1
 #   inputs:

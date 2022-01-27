@@ -25,14 +25,14 @@ steps:
 - task: FlutterTest@0
   inputs:
    generateCodeCoverageReport: true
-   projectDirectory: $(projectDirectory)
+   projectDirectory: '$(build.artifactStagingDirectory)'
   displayName: 'Run Flutter tests'
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-   codeCoverageTool: JaCoCo
-   summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/lcov.info'
-  displayName: 'Publish code coverage results'
+# - task: PublishCodeCoverageResults@1
+#   inputs:
+#    codeCoverageTool: JaCoCo
+#    summaryFileLocation: '$(build.artifactStagingDirectory)/**/lcov.info'
+#   displayName: 'Publish code coverage results'
 
 # - task: FlutterBuild@0
 #   inputs:
@@ -46,7 +46,7 @@ steps:
 #    targetFolder: '$(build.artifactStagingDirectory)'
 #   displayName: 'Copy app to artifacts directory'
 
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#    artifactName: 'drop'
-#   displayName: 'Publish artifacts'
+- task: PublishBuildArtifacts@1
+  inputs:
+   artifactName: 'drop'
+  displayName: 'Publish artifacts'

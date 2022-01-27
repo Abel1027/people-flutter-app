@@ -1,5 +1,5 @@
 variables:
-  projectDirectory: './'
+  projectDirectory: '.'
 
 trigger:
 - master
@@ -22,7 +22,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-   contents: '*/lcov.info'
+   SourceFolder: '$(projectDirectory)/coverage'
+   contents: 'lcov.info'
    targetFolder: '$(build.artifactStagingDirectory)'
   displayName: 'Copy code coverage file to artifacts directory'
 
@@ -39,8 +40,6 @@ steps:
       parser.add_argument('--cov_file_path', '-c', help='Code coverage file path', type= str)
       parser.add_argument('--output_dir', '-o', help='Cobertura XML file directory', type= str)
       args = parser.parse_args()
-      print(args.cov_file_path)
-      print(args.output_dir)
       coverage_file = open(args.cov_file_path, 'r')
       coverage_file_content = coverage_file.read()
       converter = LcovCobertura(coverage_file_content)

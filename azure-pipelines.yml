@@ -8,45 +8,45 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- script: pip install lcov_cobertura
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
 
-- task: FlutterInstall@0
-  inputs:
-    channel: 'stable'
-    version: 'latest'
-  displayName: 'Install latest Flutter SDK stable version'
+# - task: FlutterInstall@0
+#   inputs:
+#     channel: 'stable'
+#     version: 'latest'
+#   displayName: 'Install latest Flutter SDK stable version'
     
-- task: FlutterTest@0
-  inputs:
-   generateCodeCoverageReport: true
-   projectDirectory: '$(projectDirectory)'
-  displayName: 'Run Flutter tests'
+# - task: FlutterTest@0
+#   inputs:
+#    generateCodeCoverageReport: true
+#    projectDirectory: '$(projectDirectory)'
+#   displayName: 'Run Flutter tests'
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-   codeCoverageTool: JaCoCo
-   summaryFileLocation:
-  displayName: 'Publish code coverage results'
+# - task: PublishCodeCoverageResults@1
+#   inputs:
+#    codeCoverageTool: JaCoCo
+#    summaryFileLocation:
+#   displayName: 'Publish code coverage results'
 
-- task: FlutterBuild@0
-  inputs:
-    target: apk
-    projectDirectory: $(projectDirectory)
-  displayName: 'Build app'
+# - task: FlutterBuild@0
+#   inputs:
+#     target: apk
+#     projectDirectory: $(projectDirectory)
+#   displayName: 'Build app'
 
-- task: CopyFiles@2
-  inputs:
-   contents: '**/*.apk'
-   targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: 'Copy app to artifacts directory'
+# - task: CopyFiles@2
+#   inputs:
+#    contents: '**/*.apk'
+#    targetFolder: '$(build.artifactStagingDirectory)'
+#   displayName: 'Copy app to artifacts directory'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-   artifactName: 'drop'
-  displayName: 'Publish artifacts'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#    artifactName: 'drop'
+#   displayName: 'Publish artifacts'

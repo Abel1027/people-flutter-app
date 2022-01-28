@@ -8,77 +8,92 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: FlutterInstall@0
-  inputs:
-    channel: 'stable'
-    version: 'latest'
-  displayName: 'Install latest Flutter SDK stable version'
-    
-- task: FlutterTest@0
-  inputs:
-   generateCodeCoverageReport: true
-   projectDirectory: '$(projectDirectory)'
-  displayName: 'Run Flutter tests'
-
-- task: CopyFiles@2
-  inputs:
-   SourceFolder: '$(projectDirectory)/coverage'
-   contents: 'lcov.info'
-   targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: 'Copy code coverage file to artifacts directory'
-
-- script: pip install lcov_cobertura
-  displayName: 'Install lcov_cobertura python package'
-
 - task: PythonScript@0
   inputs:
     scriptSource: inline
     script: |
       import argparse
-      from lcov_cobertura import LcovCobertura
       parser = argparse.ArgumentParser()
-      parser.add_argument('--cov_file_path', '-c', help='Code coverage file path', type= str)
-      parser.add_argument('--output_dir', '-o', help='Cobertura XML file directory', type= str)
+      parser.add_argument('--and_key_pass', '-a', help='Code coverage file path', type= str)
+      parser.add_argument('--alias', '-l', help='Cobertura XML file directory', type= str)
+      parser.add_argument('--key_pass', '-k', help='Cobertura XML file directory', type= str)
       args = parser.parse_args()
-      coverage_file = open(args.cov_file_path, 'r')
-      coverage_file_content = coverage_file.read()
-      converter = LcovCobertura(coverage_file_content)
-      cobertura_xml_content = converter.convert()
-      cobertura_xml_file = open(f'{args.output_dir}/cobertura.xml', 'w')
-      cobertura_xml_file.write(cobertura_xml_content)
-      cobertura_xml_file.close()
-    arguments: --cov_file_path $(build.artifactStagingDirectory)/lcov.info --output_dir $(build.artifactStagingDirectory)
+      print(args.and_key_pass)
+      print(args.alias)
+      print(args.key_pass)
+    arguments: --and_key_pass $(ANDROID_KEYSTORE_PASSWORD) --alias $(ANDROID_KEYSTORE_ALIAS) --key_pass $(ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD)
   displayName: 'Python script -> Convert lcov.info into cobertura.xml'  
+# - task: FlutterInstall@0
+#   inputs:
+#     channel: 'stable'
+#     version: 'latest'
+#   displayName: 'Install latest Flutter SDK stable version'
+    
+# - task: FlutterTest@0
+#   inputs:
+#    generateCodeCoverageReport: true
+#    projectDirectory: '$(projectDirectory)'
+#   displayName: 'Run Flutter tests'
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-   codeCoverageTool: Cobertura
-   summaryFileLocation: '$(build.artifactStagingDirectory)/cobertura.xml'
-  displayName: 'Publish code coverage results'
+# - task: CopyFiles@2
+#   inputs:
+#    SourceFolder: '$(projectDirectory)/coverage'
+#    contents: 'lcov.info'
+#    targetFolder: '$(build.artifactStagingDirectory)'
+#   displayName: 'Copy code coverage file to artifacts directory'
 
-- task: FlutterBuild@0
-  inputs:
-    target: apk
-    projectDirectory: $(projectDirectory)
-  displayName: 'Build app'
+# - script: pip install lcov_cobertura
+#   displayName: 'Install lcov_cobertura python package'
 
-- task: AndroidSigning@3
-  displayName: 'Signing and aligning APK file(s) **/*.apk'
-  inputs:
-    apkFiles: '**/*.apk'
-    apksign: true
-    apksignerKeystoreFile: people-app-upload-keystore.jks
-    apksignerKeystorePassword: $(ANDROID_KEYSTORE_PASSWORD)
-    apksignerKeystoreAlias: $(ANDROID_KEYSTORE_ALIAS)
-    apksignerKeyPassword: $(ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD)
+# - task: PythonScript@0
+#   inputs:
+#     scriptSource: inline
+#     script: |
+#       import argparse
+#       from lcov_cobertura import LcovCobertura
+#       parser = argparse.ArgumentParser()
+#       parser.add_argument('--cov_file_path', '-c', help='Code coverage file path', type= str)
+#       parser.add_argument('--output_dir', '-o', help='Cobertura XML file directory', type= str)
+#       args = parser.parse_args()
+#       coverage_file = open(args.cov_file_path, 'r')
+#       coverage_file_content = coverage_file.read()
+#       converter = LcovCobertura(coverage_file_content)
+#       cobertura_xml_content = converter.convert()
+#       cobertura_xml_file = open(f'{args.output_dir}/cobertura.xml', 'w')
+#       cobertura_xml_file.write(cobertura_xml_content)
+#       cobertura_xml_file.close()
+#     arguments: --cov_file_path $(build.artifactStagingDirectory)/lcov.info --output_dir $(build.artifactStagingDirectory)
+#   displayName: 'Python script -> Convert lcov.info into cobertura.xml'  
 
-- task: CopyFiles@2
-  inputs:
-   contents: '**/*.apk'
-   targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: 'Copy app to artifacts directory'
+# - task: PublishCodeCoverageResults@1
+#   inputs:
+#    codeCoverageTool: Cobertura
+#    summaryFileLocation: '$(build.artifactStagingDirectory)/cobertura.xml'
+#   displayName: 'Publish code coverage results'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-   artifactName: 'drop'
-  displayName: 'Publish artifacts'
+# - task: FlutterBuild@0
+#   inputs:
+#     target: apk
+#     projectDirectory: $(projectDirectory)
+#   displayName: 'Build app'
+
+# - task: AndroidSigning@3
+#   displayName: 'Signing and aligning APK file(s) **/*.apk'
+#   inputs:
+#     apkFiles: '**/*.apk'
+#     apksign: true
+#     apksignerKeystoreFile: people-app-upload-keystore.jks
+#     apksignerKeystorePassword: $(ANDROID_KEYSTORE_PASSWORD)
+#     apksignerKeystoreAlias: $(ANDROID_KEYSTORE_ALIAS)
+#     apksignerKeyPassword: $(ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD)
+
+# - task: CopyFiles@2
+#   inputs:
+#    contents: '**/*.apk'
+#    targetFolder: '$(build.artifactStagingDirectory)'
+#   displayName: 'Copy app to artifacts directory'
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#    artifactName: 'drop'
+#   displayName: 'Publish artifacts'

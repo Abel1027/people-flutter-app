@@ -8,6 +8,11 @@ variables:
   value: $[variables.ANDROID_KEYSTORE_ALIAS]
 - name: androidKeystorePrivateKeyPassword
   value: $[variables.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD]
+- group: firebase
+- name: firebaseToken
+  value: $[variables.FIREBASE_TOKEN]
+- name: firebaseAndroidAppId
+  value: $[variables.FIREBASE_ANDROID_APP_ID]
 
 trigger:
 - master
@@ -98,7 +103,9 @@ steps:
 #   displayName: 'Publish artifacts'
 
 - script: |
-    echo 'Installing firebase cli...'
+    echo 'Installing Firebase CLI...'
     curl -sL https://firebase.tools | bash
     firebase --version
+    echo 'Deploying to Firebase...'
+    firebase deploy --token $(firebaseToken) --project $(firebaseAndroidAppId) --message 'Release from Azure DevOps'
   displayName: 'Deploy app to Firebase'

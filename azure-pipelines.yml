@@ -1,5 +1,8 @@
 variables:
   # projectDirectory: '.'
+- group: project
+- name: projectDirectory
+  value: '.'
 - group: keystore
 - name: android-keystore-password
   value: $[variables.ANDROID_KEYSTORE_PASSWORD]
@@ -28,7 +31,7 @@ steps:
       print(args.and_key_pass)
       print(args.alias)
       print(args.key_pass)
-    arguments: --and_key_pass $(android-keystore-password) --alias $(android-keystore-alias) --key_pass $(android-keystore-private-key-password)
+    arguments: --and_key_pass $(projectDirectory) --alias $(android-keystore-alias) --key_pass $(android-keystore-private-key-password)
   displayName: 'Python script -> Convert lcov.info into cobertura.xml'  
 # - task: FlutterInstall@0
 #   inputs:

@@ -107,11 +107,20 @@ steps:
     curl -sL https://firebase.tools | bash
     firebase --version
     echo 'Deploying to Firebase...'
-    appPath = $(build.artifactStagingDirectory)/**/*.apk
-    eval find "$search" -print
-    echo $(appPath)
-    firebase appdistribution:distribute $(appPath)  \
-    --token $(firebaseToken)  \
-    --app $(firebaseAndroidAppId)  \
-    --release-notes 'Deploy apk from Azure DevOps'
+    appPath=$(build.artifactStagingDirectory)/**/*.apk
+    eval find "$appPath" -print
+    echo $appPath
   displayName: 'Deploy app to Firebase'
+# - script: |
+#     echo 'Installing Firebase CLI...'
+#     curl -sL https://firebase.tools | bash
+#     firebase --version
+#     echo 'Deploying to Firebase...'
+#     appPath=$(build.artifactStagingDirectory)/**/*.apk
+#     eval find "$appPath" -print
+#     echo $appPath
+#     firebase appdistribution:distribute $appPath  \
+#     --token $(firebaseToken)  \
+#     --app $(firebaseAndroidAppId)  \
+#     --release-notes 'Deploy apk from Azure DevOps'
+#   displayName: 'Deploy app to Firebase'

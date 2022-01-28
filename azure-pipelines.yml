@@ -103,12 +103,20 @@ steps:
 #   displayName: 'Publish artifacts'
 
 - script: |
-    echo 'Installing Firebase CLI...'
-    curl -sL https://firebase.tools | bash
-    firebase --version
-    echo 'Deploying to Firebase...'
-    firebase appdistribution:distribute '$(build.artifactStagingDirectory)/**/*.apk'  \
-    --token $(firebaseToken)  \
-    --app $(firebaseAndroidAppId)  \
-    --release-notes 'Deploy apk from Azure DevOps'
+    echo $(build.artifactStagingDirectory)
+    mkdir $(build.artifactStagingDirectory)/testing
+    touch $(build.artifactStagingDirectory)/testing/asd.apk
+    search=$(build.artifactStagingDirectory)/**/*.apk
+    eval find "$search" -print
+    echo $search
   displayName: 'Deploy app to Firebase'
+# - script: |
+#     echo 'Installing Firebase CLI...'
+#     curl -sL https://firebase.tools | bash
+#     firebase --version
+#     echo 'Deploying to Firebase...'
+#     firebase appdistribution:distribute $(build.artifactStagingDirectory)/**/*.apk  \
+#     --token $(firebaseToken)  \
+#     --app $(firebaseAndroidAppId)  \
+#     --release-notes 'Deploy apk from Azure DevOps'
+#   displayName: 'Deploy app to Firebase'

@@ -2,13 +2,13 @@ variables:
 - name: projectDirectory
   value: '.'
 - group: keystore
-- group: firebase
 - name: androidKeystorePassword
   value: $[variables.ANDROID_KEYSTORE_PASSWORD]
 - name: androidKeystoreAlias
   value: $[variables.ANDROID_KEYSTORE_ALIAS]
 - name: androidKeystorePrivateKeyPassword
   value: $[variables.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD]
+- group: firebase
 - name: firebaseToken
   value: $[variables.FIREBASE_TOKEN]
 - name: firebaseAndroidAppId

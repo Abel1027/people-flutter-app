@@ -21,6 +21,11 @@ steps:
     channel: 'stable'
     version: 'latest'
   displayName: 'Install latest Flutter SDK stable version'
+
+- task: FlutterAnalyzeTask@0
+  inputs:
+   projectDirectory: '$(projectDirectory)'
+   extraArgs: '--fatal-warnings'
     
 - task: FlutterTest@0
   inputs:

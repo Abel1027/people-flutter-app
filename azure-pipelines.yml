@@ -102,7 +102,10 @@ steps:
     curl -sL https://firebase.tools | bash
     firebase --version
     echo 'Deploying to Firebase...'
-    firebase appdistribution:distribute $(build.artifactStagingDirectory)/**/*.apk  \
+    appPath=$(build.artifactStagingDirectory)/**/*.apk
+    eval find "$appPath" -print
+    echo $appPath
+    firebase $appPath  \
     --token $(firebaseToken)  \
     --app $(firebaseAndroidAppId)  \
     --release-notes 'Deploy apk from Azure DevOps'

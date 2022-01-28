@@ -49,12 +49,13 @@ steps:
       cobertura_xml_file.write(cobertura_xml_content)
       cobertura_xml_file.close()
     arguments: --cov_file_path $(build.artifactStagingDirectory)/lcov.info --output_dir $(build.artifactStagingDirectory)
+  displayName: 'Python script -> Convert lcov.info into cobertura.xml'  
 
-# - task: PublishCodeCoverageResults@1
-#   inputs:
-#    codeCoverageTool: JaCoCo
-#    summaryFileLocation:
-#   displayName: 'Publish code coverage results'
+- task: PublishCodeCoverageResults@1
+  inputs:
+   codeCoverageTool: Cobertura
+   summaryFileLocation: '$(build.artifactStagingDirectory)/cobertura.xml'
+  displayName: 'Publish code coverage results'
 
 # - task: FlutterBuild@0
 #   inputs:

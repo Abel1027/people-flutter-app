@@ -62,6 +62,16 @@ steps:
     projectDirectory: $(projectDirectory)
   displayName: 'Build app'
 
+- task: AndroidSigning@3
+  displayName: 'Signing and aligning APK file(s) **/*.apk'
+  inputs:
+    apkFiles: '**/*.apk'
+    apksign: true
+    apksignerKeystoreFile: people-app-upload-keystore.jks
+    apksignerKeystorePassword: $(ANDROID_KEYSTORE_PASSWORD)
+    apksignerKeystoreAlias: $(ANDROID_KEYSTORE_ALIAS)
+    apksignerKeyPassword: $(ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD)
+
 - task: CopyFiles@2
   inputs:
    contents: '**/*.apk'

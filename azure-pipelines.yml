@@ -102,10 +102,20 @@ steps:
 #     artifactName: 'drop'
 #   displayName: 'Publish artifacts'
 
+# - script: |
+#     echo 'Installing Firebase CLI...'
+#     curl -sL https://firebase.tools | bash
+#     firebase --version
+#     echo 'Deploying to Firebase...'
+#     firebase deploy --token $(firebaseToken) --project $(firebaseAndroidAppId) --message 'Release from Azure DevOps'
+#   displayName: 'Deploy app to Firebase'
 - script: |
     echo 'Installing Firebase CLI...'
     curl -sL https://firebase.tools | bash
     firebase --version
     echo 'Deploying to Firebase...'
-    firebase deploy --token $(firebaseToken) --project $(firebaseAndroidAppId) --message 'Release from Azure DevOps'
+    firebase appdistribution:distribute $(build.artifactStagingDirectory)/**/*.apk  \
+    --token $(firebaseToken)  \
+    --app $(firebaseAndroidAppId)  \
+    --release-notes 'Deploy apk from Azure DevOps'
   displayName: 'Deploy app to Firebase'

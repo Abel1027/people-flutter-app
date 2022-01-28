@@ -26,6 +26,7 @@ steps:
   inputs:
    projectDirectory: '$(projectDirectory)'
    extraArgs: '--fatal-warnings'
+  displayName: 'Run Flutter analyzer'
     
 - task: FlutterTest@0
   inputs:

@@ -97,6 +97,17 @@ steps:
     targetFolder: '$(build.artifactStagingDirectory)'
   displayName: 'Copy app to artifacts directory'
 
+- script: |
+    echo 'Installing Firebase CLI...'
+    curl -sL https://firebase.tools | bash
+    firebase --version
+    echo 'Deploying to Firebase...'
+    firebase appdistribution:distribute $(build.artifactStagingDirectory)/build/app/outputs/flutter-apk/app-release.apk  \
+    --token $(firebaseToken)  \
+    --app $(firebaseAndroidAppId)  \
+    --release-notes 'Deploy apk from Azure DevOps'
+  displayName: 'Deploy app to Firebase'
+
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'drop'
@@ -111,13 +122,3 @@ steps:
 #     eval find "$appPath" -print
 #     echo $appPath
 #   displayName: 'Deploy app to Firebase'
-- script: |
-    echo 'Installing Firebase CLI...'
-    curl -sL https://firebase.tools | bash
-    firebase --version
-    echo 'Deploying to Firebase...'
-    firebase appdistribution:distribute $(build.artifactStagingDirectory)/drop/build/app/outputs/flutter-apk/app-release.apk  \
-    --token $(firebaseToken)  \
-    --app $(firebaseAndroidAppId)  \
-    --release-notes 'Deploy apk from Azure DevOps'
-  displayName: 'Deploy app to Firebase'

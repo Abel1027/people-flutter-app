@@ -1,4 +1,4 @@
-name: github-actions-for-flutter
+name: github-actions-for-flutter-manual
 on:
   workflow_dispatch:
     inputs:

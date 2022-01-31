@@ -14,6 +14,7 @@ void main() {
   late final MockLoginRepository loginRepository;
   late final LoginCubit loginCubit;
 
+  // This comment is for test purposes
   group(
     'Test LoginCubit bloc ->',
     () {
